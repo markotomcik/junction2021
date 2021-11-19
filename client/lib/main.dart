@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HMS Flutter starter app',
+      title: 'FUUD(TBD)',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: MyHomePage(title: 'HMS Flutter starter app'),
+      home: MyHomePage(title: 'FUUD(TBD)'),
     );
   }
 }
@@ -28,15 +28,15 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       /**/
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: FutureBuilder<void>(
-          future: _checkHMS(),
-          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-            final String message = _getMessageFromSnapshot(snapshot);
-            return Text(message);
-          }),
+      appBar: AppBar(title: Text(title), actions: <Widget>[
+        FutureBuilder<void>(
+            future: _checkHMS(),
+            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+              final String message = _getMessageFromSnapshot(snapshot);
+              return Text(message);
+            })
+      ]),
+      body: Text("Pekne"),
     );
   }
 
