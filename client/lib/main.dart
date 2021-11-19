@@ -27,17 +27,22 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /**/
-      appBar: AppBar(title: Text(title), actions: <Widget>[
-        FutureBuilder<void>(
-            future: _checkHMS(),
-            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-              final String message = _getMessageFromSnapshot(snapshot);
-              return Text(message);
-            })
-      ]),
-      body: Text("Pekne"),
-    );
+        /**/
+        appBar: AppBar(
+            backgroundColor: Colors.red,
+            title: Text(title),
+            actions: <Widget>[
+              FutureBuilder<void>(
+                  future: _checkHMS(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<void> snapshot) {
+                    final String message = _getMessageFromSnapshot(snapshot);
+                    return Text(message);
+                  })
+            ]),
+        body: Center(
+          child: Text("Pekne"),
+        ));
   }
 
   Future<void> _checkHMS() async {
