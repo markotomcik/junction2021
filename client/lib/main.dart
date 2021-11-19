@@ -50,7 +50,7 @@ class MyHomePage extends StatelessWidget {
     final hmsCoreStatus = await hmsApiAvailability.isHMSAvailable();
     if (hmsCoreStatus != 0) {
       final hmsCoreNotAvailableExplanation =
-      await hmsApiAvailability.getErrorString(hmsCoreStatus);
+          await hmsApiAvailability.getErrorString(hmsCoreStatus);
       throw new Exception(hmsCoreNotAvailableExplanation);
     }
   }
