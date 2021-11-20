@@ -9,10 +9,6 @@
 .buildlog/
 .history
 .svn/
-.android/
-.build
-.test
-
 
 # IntelliJ related
 *.iml
