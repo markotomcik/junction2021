@@ -15,7 +15,7 @@ module.exports = (app) => {
   app.get('/box/:id',
     BoxController.get)
 
-  app.get('/box/:locationX/:locationY/:range',
+  app.get('/box/:locationX/:locationY/:radius',
     BoxController.getInRadius)
 
   app.put('/box/:id',

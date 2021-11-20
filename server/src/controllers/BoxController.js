@@ -1,3 +1,6 @@
+const { Box } = require('../models')
+const { Op } = require('sequelize')
+
 module.exports = {
   async new (req, res) {
     try {
@@ -10,9 +13,9 @@ module.exports = {
     }
   },
 
-  async get(req, res) {
+  async get (req, res) {
     try {
-      const box = await Box.findById(req.params.id)
+      const box = await Box.findByPk(req.params.id)
       return res.status(200).json(box)
     } catch (err) {
       return res.status(400).json({
@@ -21,8 +24,9 @@ module.exports = {
     }
   },
 
-  async getInRadius(req, res) {
+  async getInRadius (req, res) {
     try {
+      console.log(req.params)
       const boxes = await Box.find({
         where: {
           locationX: {
