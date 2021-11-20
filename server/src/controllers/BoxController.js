@@ -1,4 +1,4 @@
-const { Box } = require('../models')
+const { Box, Food } = require('../models')
 const { Op } = require('sequelize')
 
 module.exports = {
@@ -58,6 +58,25 @@ module.exports = {
     } catch (err) {
       return res.status(400).json({
         error: 'The update of box failed.'
+      })
+    }
+  },
+
+  async getFood (req, res) {
+    try {
+      const box = await Box.findByPk(req.params.id)
+      if (box === null) {
+        throw new Error('Box not found.')
+      }
+      const foods = await Food.findAll({
+        where: {
+          boxId: box.id
+        }
+      })
+      return res.status(200).json(foods)
+    } catch (err) {
+      return res.status(404).json({
+        error: 'The box was not found.'
       })
     }
   }

@@ -24,4 +24,17 @@ fs
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+db.Box.hasMany(db.Food, {
+  foreignKey: {
+    name: 'boxId',
+    allowNull: false
+  }
+})
+db.Food.belongsTo(db.User, {
+  foreignKey: {
+    name: 'userId',
+    allowNull: false
+  }
+})
+
 module.exports = db

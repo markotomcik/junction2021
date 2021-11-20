@@ -1,5 +1,6 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const BoxController = require('./controllers/BoxController')
+const FoodController = require('./controllers/FoodController')
 
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 
@@ -24,4 +25,17 @@ module.exports = (app) => {
 
   app.put('/box/:id',
     BoxController.update)
+
+  app.get('/box/:id/food',
+    BoxController.getFood)
+
+  // Food Routes
+  app.post('/food/new',
+    FoodController.new)
+
+  app.get('/food/:id',
+    FoodController.get)
+
+  app.put('/food/:id',
+    FoodController.update)
 }
