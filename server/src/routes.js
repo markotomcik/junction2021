@@ -4,12 +4,13 @@ const BoxController = require('./controllers/BoxController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 
 module.exports = (app) => {
-// User Routes
+  // User Routes
   app.post('/register',
     AuthenticationControllerPolicy.register,
     AuthenticationController.register)
+
   app.post('/login',
-    AuthenticationControllerPolicy.login)
+    AuthenticationController.login)
 
   // Box Routes
   app.post('/box/new',
