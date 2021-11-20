@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 module.exports = {
   register (req, res, next) {
-    const passwordPattern = '^[a-zA-Z0-9]{8,32}$'
+    const passwordPattern = '^[a-zA-Z0-9]{8,50}$'
 
     const schema = Joi.object({
       email: Joi.string().email(),
@@ -22,12 +22,11 @@ module.exports = {
           break
         case 'password':
           res.status(400).send({
-            error: `The passwrod privoded failed to match the following rules:
-            <br>
-            1. It must contain ONLY the following characters: lower case, upper case, numerics.
-            <br>
-            2. It must be at least 8 characters ing legth and not greater than 50 characters length.
-            `
+            error: `The password provided failed to match the following rules.`,
+            rules: [
+              `It must contain ONLY the following characters: lower case, upper case, numerics.`
+              `It must be at least 8 characters long and not greater than 50 characters in length.`
+            ]
           })
           break
         default:
