@@ -7,7 +7,7 @@ module.exports = {
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
-      storage: './junction2021.sqlite'
+      // storage: './junction2021.sqlite'
     }
   },
   authentication: {
