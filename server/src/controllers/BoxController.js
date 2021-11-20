@@ -16,9 +16,12 @@ module.exports = {
   async get (req, res) {
     try {
       const box = await Box.findByPk(req.params.id)
+      if (box === null) {
+        throw new Error('Box not found.')
+      }
       return res.status(200).json(box)
     } catch (err) {
-      return res.status(400).json({
+      return res.status(404).json({
         error: 'The box was not found.'
       })
     }
@@ -26,8 +29,7 @@ module.exports = {
 
   async getInRadius (req, res) {
     try {
-      console.log(req.params)
-      const boxes = await Box.find({
+      const boxes = await Box.findAll({
         where: {
           locationX: {
             [Op.between]: [req.params.locationX - req.params.radius, req.params.locationX + req.params.radius]
@@ -47,8 +49,12 @@ module.exports = {
 
   async update (req, res) {
     try {
-      const box = await Box.findByIdAndUpdate(req.params.id, req.body, { new: true })
-      return res.status(200).json(box)
+      const box = await Box.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      })
+      return res.status(200).json({ ...req.body, returned: !!box })
     } catch (err) {
       return res.status(400).json({
         error: 'The update of box failed.'
