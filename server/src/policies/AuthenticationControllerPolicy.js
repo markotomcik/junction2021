@@ -22,10 +22,10 @@ module.exports = {
           break
         case 'password':
           res.status(400).send({
-            error: `The password provided failed to match the following rules.`,
+            error: 'The password provided failed to match the following rules.',
             rules: [
-              `It must contain ONLY the following characters: lower case, upper case, numerics.`
-              `It must be at least 8 characters long and not greater than 50 characters in length.`
+              'It must contain ONLY the following characters: lower case, upper case, numerics.',
+              'It must be at least 8 characters long and not greater than 50 characters in length.'
             ]
           })
           break
