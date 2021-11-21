@@ -77,7 +77,7 @@ module.exports = {
           id: req.params.id
         }
       })
-      return res.status(200).json({ ...req.body, returned: !!user })
+      return res.status(200).json({ userId: req.params.id, returned: !!user })
     } catch (err) {
       return res.status(400).json({
         error: 'The deactivation of user failed.'

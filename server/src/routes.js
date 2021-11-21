@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const BoxController = require('./controllers/BoxController')
 const FoodController = require('./controllers/FoodController')
+const RewardController = require('./controllers/RewardController')
 
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 
@@ -12,6 +13,12 @@ module.exports = (app) => {
 
   app.post('/login',
     AuthenticationController.login)
+
+  app.put('/user/update/:id',
+    AuthenticationController.update)
+
+  app.put('/user/deactivate/:id',
+    AuthenticationController.deactivate)
 
   // Box Routes
   app.post('/box/new',
@@ -38,4 +45,14 @@ module.exports = (app) => {
 
   app.put('/food/:id',
     FoodController.update)
+
+  // Reward Routes
+  app.post('/reward/new',
+    RewardController.new)
+
+  app.get('/reward/:id',
+    RewardController.get)
+
+  app.put('/reward/:id',
+    RewardController.update)
 }
