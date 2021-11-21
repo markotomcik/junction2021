@@ -53,5 +53,35 @@ module.exports = {
         error: 'An error has occured trying to log in'
       })
     }
+  },
+  async update (req, res) {
+    try {
+      const user = await User.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      })
+      return res.status(200).json({ ...req.body, returned: !!user })
+    } catch (err) {
+      return res.status(400).json({
+        error: 'The update of user failed.'
+      })
+    }
+  },
+  async deactivate (req, res) {
+    try {
+      const user = await User.update({
+        active: false
+      }, {
+        where: {
+          id: req.params.id
+        }
+      })
+      return res.status(200).json({ ...req.body, returned: !!user })
+    } catch (err) {
+      return res.status(400).json({
+        error: 'The deactivation of user failed.'
+      })
+    }
   }
 }
