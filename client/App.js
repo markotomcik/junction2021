@@ -12,19 +12,31 @@ import {
   Alert
 } from 'react-native';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers';
+import thunk from 'redux-thunk'
+
 
 import { HmsPushInstanceId } from "@hmscore/react-native-hms-push";
 import HMSAvailability, { ErrorCode } from '@hmscore/react-native-hms-availability';
-import { Home }  from './home/Home';
+import { Home } from './home/Home';
+import { AppNavigator } from './navigation/Navigation'
 import { default as theme } from './custom-theme.json';
+import { Provider } from 'react-redux';
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const App = () => {
   return (
-    <ApplicationProvider {...eva} theme={{ ...theme, ...eva.dark}}>
-      <StatusBar barStyle="dark-content" />
-      <Home />
-    </ApplicationProvider>
+    <Provider store = { store }>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={{ ...theme, ...eva.dark }}>
+        <StatusBar barStyle="dark-content" />
+        <AppNavigator />
+      </ApplicationProvider>
+    </Provider>
   );
 };
 
