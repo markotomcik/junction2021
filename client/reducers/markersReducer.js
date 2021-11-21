@@ -1,6 +1,7 @@
-const markers = (state = [], action) {
+const markers = (state = null, action) => {
   switch (action.type) {
-    case "MARKERS_SUCCESS":
+    case "GET_MARKERS_SUCCESS":
+      console.log(action.payload.markers);
       return action.payload.markers;
 
 

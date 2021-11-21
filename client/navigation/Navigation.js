@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect }  from 'react'
+import { useDispatch } from 'react-redux';
 import { Map } from '../map/Map'
 import { Home } from '../home/Home'
 import { Settings } from '../settings/Settings'
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomNavigation, BottomNavigationTab, Button, Icon, Text } from '@ui-kitten/components';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { getMarkersAction } from '../actions'
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
